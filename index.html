@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guida Audio Monumenti</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffe6f1; /* Rosa chiaro di sfondo */
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #ff80b3; /* Rosa brillante */
+            padding: 15px;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 2px solid #ff66b3;
+            background-color: #ff99cc;
+            cursor: pointer;
+            outline: none;
+        }
+
+        option {
+            background-color: #ff99cc;
+            padding: 10px;
+        }
+
+        /* Colori personalizzati per le voci del menu */
+        #cenacolo {
+            color: #ff4d94;
+        }
+
+        #santambrogio {
+            color: #ff3366;
+        }
+
+        #santeustorgio {
+            color: #ff66b3;
+        }
+
+        #monastero {
+            color: #ff1a8c;
+        }
+
+        /* Stile del player audio */
+        audio {
+            display: block;
+            margin: 30px auto;
+            width: 80%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        Guida Audio Monumenti
+    </header>
+
+    <div class="menu-container">
+        <select id="monumento" onchange="playAudio()">
+            <option value="" disabled selected>Scegli un Monumento</option>
+            <option id="cenacolo" value="cenacolo.mp3">Cenacolo</option>
+            <option id="santambrogio" value="santambrogio.mp3">Sant'Ambrogio</option>
+            <option id="santeustorgio" value="santeustorgio.mp3">S. Eustorgio</option>
+            <option id="monastero" value="monastero.mp3">Monastero di S. Maurizio</option>
+        </select>
+    </div>
+
+    <audio id="audioPlayer" controls>
+        <source src="" id="audioSource" type="audio/mp3">
+        Il tuo browser non supporta il tag audio.
+    </audio>
+
+    <script>
+        // Funzione per riprodurre l'audio
+        function playAudio() {
+            const player = document.getElementById('audioPlayer');
+            const audioSource = document.getElementById('audioSource');
+            const selectMenu = document.getElementById('monumento');
+            const selectedOption = selectMenu.value;
+
+            // Imposta la sorgente dell'audio in base alla voce selezionata
+            audioSource.src = selectedOption;
+
+            // Ricarica il player e avvia la riproduzione
+            player.load();
+            player.play();
+        }
+    </script>
+
+</body>
+</html>
